@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import '../../screens/splash/splash_screen.dart';
+
 
 
 class CustomRoute {
@@ -11,7 +13,7 @@ class CustomRoute {
 
 Map<String, Widget Function(BuildContext)> customMainRouter =
     <String, WidgetBuilder>{
-      // CustomRoute().splash: (context) => SplashScreen(),
+      CustomRoute().splash: (context) => SplashScreen(),
       // CustomRoute().login: (context) => LoginScreen(),
       // CustomRoute().forgotPassword : (context) => ForgotPasswordScreen(),
       // CustomRoute().bottomNavBar : (context) => BottomNavBarScreen(),
