@@ -28,7 +28,7 @@ class CustomTextformWidget extends StatelessWidget {
       decoration: InputDecoration(
         suffixIcon: suffixIcon,
         filled: true,
-        fillColor: whiteColor,
+        fillColor: greyColor.withOpacity(0.2),
         hintText: hintText,
         border: OutlineInputBorder(
           borderSide: BorderSide(color: greyColor),

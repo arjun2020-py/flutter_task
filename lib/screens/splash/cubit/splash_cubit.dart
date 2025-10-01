@@ -7,7 +7,9 @@ import '../../../utils/router/navigtion_router.dart';
 part 'splash_state.dart';
 
 class SplashCubit extends Cubit<SplashState> {
-  SplashCubit(this.context) : super(SplashInitial());
+  SplashCubit(this.context) : super(SplashInitial()) {
+    onSplash();
+  }
   BuildContext context;
   onSplash() async {
     Future.delayed(Duration(seconds: 3), () {
