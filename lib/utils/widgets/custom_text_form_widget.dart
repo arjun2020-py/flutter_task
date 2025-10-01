@@ -12,13 +12,17 @@ class CustomTextformWidget extends StatelessWidget {
     this.obscureText,
     this.suffixIcon,
     this.validator,
+    this.prefixIcon,
+    this.fontSize
   });
   TextEditingController? controller;
   double? borderRadius;
   final String hintText;
   bool? obscureText;
   Widget? suffixIcon;
+  Widget? prefixIcon;
   String? Function(String?)? validator;
+  double? fontSize;
   @override
   Widget build(BuildContext context) {
     return TextFormField(
@@ -26,6 +30,8 @@ class CustomTextformWidget extends StatelessWidget {
       validator: validator,
       controller: controller,
       decoration: InputDecoration(
+        hintStyle:TextStyle(fontSize:fontSize),
+        prefixIcon:prefixIcon,
         suffixIcon: suffixIcon,
         filled: true,
         fillColor: greyColor.withOpacity(0.2),

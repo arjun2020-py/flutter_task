@@ -9,3 +9,5 @@ Color greenColor = Colors.green;
 Color loginButnColor = Color(0xff006837);
 Color loginPrivacyColor = Color(0xff0028FC);
 Color greyColor = Colors.grey;
+Color cardColor = Color(0xffF1F1F1);
+Color appIconSecondaryColor = Color(0xffF24E1E);
