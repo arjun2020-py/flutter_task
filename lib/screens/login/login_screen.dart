@@ -22,118 +22,131 @@ class LoginScreen extends StatelessWidget {
           builder: (context, state) {
             var loginCubit = context.read<LoginCubit>();
             return SingleChildScrollView(
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.start,
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Stack(
-                    children: [
-                      Image.asset(appLoginFaremePic),
-                      Positioned(
-                        bottom: 50,
-                        left: 50,
-                        right: 50,
-                        top: 50,
-                        child: Image.asset(appLogo),
-                      ),
-                    ],
-                  ),
-                  SizedBox(height: 10),
-                  Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 15),
-                    child: CustomTextWidget(
-                      text: loginText,
-                      color: blackColor,
-                      fontSize: 24,
-                      fontWeight: FontWeight.w600,
-                    ),
-                  ),
-                  SizedBox(height: 20),
-
-                  Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 15),
-                    child: CustomTextWidget(
-                      text: "$email:",
-                      color: blackColor,
-                      fontWeight: FontWeight.w400,
-                    ),
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 15),
-                    child: CustomTextformWidget(hintText: enterYourEmail),
-                  ),
-                  SizedBox(height: 20),
-
-                  Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 15),
-                    child: CustomTextWidget(
-                      text: "$password:",
-                      color: blackColor,
-                      fontWeight: FontWeight.w400,
-                    ),
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 15),
-                    child: CustomTextformWidget(hintText: enterPassword),
-                  ),
-                  SizedBox(height: 70),
-
-                  Center(
-                    child:
-                     SizedBox(
-                      width: 
-                      MediaQuery.sizeOf(context).width * 0.9,
-                      child: 
-                      CustomElevButtnWidget(
-                        backgroundColor: loginButnColor,
-                        onPressed: () {
-                          loginCubit.onLogin();
-                        },
-                        child: CustomTextWidget(text: login, color: whiteColor),
-                      ),
-                    ),
-                  ),
-                  SizedBox(height: 140),
-
-                  Center(
-                    child: RichText(
-                      text: TextSpan(
-                        style: TextStyle(
-                          color: blackColor,
-                          fontSize: 12,
-                          fontWeight: FontWeight.w300,
+              child: Form(
+                key: loginCubit.formKey,
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Stack(
+                      children: [
+                        Image.asset(appLoginFaremePic),
+                        Positioned(
+                          bottom: 50,
+                          left: 50,
+                          right: 50,
+                          top: 50,
+                          child: Image.asset(appLogo),
                         ),
-                        text: loginText1,
-                        children: [
-                          TextSpan(
-                            text: loginText2,
-                            style: TextStyle(
-                              color: loginPrivacyColor,
-                              fontSize: 12,
-                              fontWeight: FontWeight.w500,
-                            ),
-                          ),
-                          TextSpan(
-                            text: loginText3,
-                            style: TextStyle(
-                              color: blackColor,
-                              fontSize: 12,
-                              fontWeight: FontWeight.w300,
-                            ),
-                          ),
-                          TextSpan(
-                            text: loginText4,
-                            style: TextStyle(
-                              color: loginPrivacyColor,
-                              fontSize: 12,
-                              fontWeight: FontWeight.w500,
-                            ),
-                          ),
-                        ],
+                      ],
+                    ),
+                    SizedBox(height: 10),
+                    Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 15),
+                      child: CustomTextWidget(
+                        text: loginText,
+                        color: blackColor,
+                        fontSize: 24,
+                        fontWeight: FontWeight.w600,
                       ),
                     ),
-                  ),
-                ],
+                    SizedBox(height: 20),
+
+                    Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 15),
+                      child: CustomTextWidget(
+                        text: "$email:",
+                        color: blackColor,
+                        fontWeight: FontWeight.w400,
+                      ),
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 15),
+                      child: CustomTextformWidget(
+                        validator: (value) => loginCubit.emailValidation(value),
+                        controller: loginCubit.emailCtr,
+                        hintText: enterYourEmail,
+                      ),
+                    ),
+                    SizedBox(height: 20),
+
+                    Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 15),
+                      child: CustomTextWidget(
+                        text: "$password:",
+                        color: blackColor,
+                        fontWeight: FontWeight.w400,
+                      ),
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 15),
+                      child: CustomTextformWidget(
+                        validator: (value) =>
+                            loginCubit.passwordValidation(value),
+                        controller: loginCubit.password,
+                        hintText: enterPassword,
+                      ),
+                    ),
+                    SizedBox(height: 70),
+
+                    Center(
+                      child: SizedBox(
+                        width: MediaQuery.sizeOf(context).width * 0.9,
+                        height: MediaQuery.sizeOf(context).width * 0.15,
+                        child: CustomElevButtnWidget(
+                          backgroundColor: loginButnColor,
+                          onPressed: () {
+                            loginCubit.onLogin(context);
+                          },
+                          child: CustomTextWidget(
+                            text: login,
+                            color: whiteColor,
+                          ),
+                        ),
+                      ),
+                    ),
+                    SizedBox(height: 140),
+
+                    Center(
+                      child: RichText(
+                        text: TextSpan(
+                          style: TextStyle(
+                            color: blackColor,
+                            fontSize: 12,
+                            fontWeight: FontWeight.w300,
+                          ),
+                          text: loginText1,
+                          children: [
+                            TextSpan(
+                              text: loginText2,
+                              style: TextStyle(
+                                color: loginPrivacyColor,
+                                fontSize: 12,
+                                fontWeight: FontWeight.w500,
+                              ),
+                            ),
+                            TextSpan(
+                              text: loginText3,
+                              style: TextStyle(
+                                color: blackColor,
+                                fontSize: 12,
+                                fontWeight: FontWeight.w300,
+                              ),
+                            ),
+                            TextSpan(
+                              text: loginText4,
+                              style: TextStyle(
+                                color: loginPrivacyColor,
+                                fontSize: 12,
+                                fontWeight: FontWeight.w500,
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
               ),
             );
           },
