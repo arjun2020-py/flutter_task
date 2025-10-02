@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_task/screens/login/login_screen.dart';
 
+import '../../screens/register_patient/invoice_screen.dart';
 import '../../screens/register_patient/register_patient_screen.dart';
 import '../../screens/patient_list/patient_list_screen.dart';
 import '../../screens/splash/splash_screen.dart';
@@ -10,14 +11,14 @@ class CustomRoute {
   String login = 'login';
   String register = 'register';
   String patientList = 'patientList';
-  String bottomNavBar = 'bottomNavBar';
-  String forgotPassword = 'ForgotPasswordScreen';
+ // String invoicePdf = 'invoicePdf';
 }
 
 Map<String, Widget Function(BuildContext)> customMainRouter =
     <String, WidgetBuilder>{
       CustomRoute().splash: (context) => SplashScreen(),
-    CustomRoute().login: (context) => LoginScreen(),
+      CustomRoute().login: (context) => LoginScreen(),
       CustomRoute().patientList: (context) => PatientListScreen(),
-      CustomRoute().register : (context) => RegisterPatientScreen()
+      CustomRoute().register: (context) => RegisterPatientScreen(),
+     // CustomRoute().invoicePdf :(context) =>InvoiceScreen()
     };

@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_task/screens/register_patient/invoice_screen.dart';
 
 import '../../utils/app_const/text_const.dart';
 import '../../utils/color/custom_color.dart';
+import '../../utils/helper/custom_navigtion.dart';
+import '../../utils/router/navigtion_router.dart';
 import '../../utils/widgets/custom_elev_btn_widget.dart';
 import '../../utils/widgets/custom_horzontal_sized_box.dart';
 import '../../utils/widgets/custom_icon_btn_widget.dart';
@@ -416,7 +419,19 @@ class RegisterPatientScreen extends StatelessWidget {
                         width: MediaQuery.sizeOf(context).width * 0.9,
                         child: CustomElevButtnWidget(
                           backgroundColor: loginButnColor,
-                          onPressed: () {},
+                          onPressed: ()  {
+                             AyurvedaInvoiceGenerator.generateInvoice(
+                              patientName: 'Salih T',
+                              address: 'Nadakkave, Kozhikkode',
+                              whatsappNumber: '+91 9876654321',
+                              bookedOn: '31/01/2024 | 12:12pm',
+                              treatmentDate: '21/02/2024',
+                              treatmentTime: '11:00 am',
+                              treatments: registerCubit.treatments,
+                              discount: 500,
+                              advance: 1200,
+                            );
+                          },
                           child: CustomTextWidget(
                             text: save,
                             color: whiteColor,

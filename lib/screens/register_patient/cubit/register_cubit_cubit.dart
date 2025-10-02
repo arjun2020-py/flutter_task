@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
+import '../model/treatment_item_model.dart';
 import '../model/treatment_model.dart';
 
 
@@ -109,4 +110,28 @@ class RegisterCubitCubit extends Cubit<RegisterCubitState> {
       emit(RegisterCubitTreatmentEditing());
     }
   }
+
+   final treatments = [
+    TreatmentItem(
+      name: 'Panchakarma',
+      price: 230,
+      maleCount: 4,
+      femaleCount: 4,
+      total: 2540,
+    ),
+    TreatmentItem(
+      name: 'Njavara Kizhi Treatment',
+      price: 230,
+      maleCount: 4,
+      femaleCount: 4,
+      total: 2540,
+    ),
+    TreatmentItem(
+      name: 'Panchakarma',
+      price: 230,
+      maleCount: 4,
+      femaleCount: 6,
+      total: 2540,
+    ),
+  ];
 }
