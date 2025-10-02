@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_task/screens/auth/login/cubit/login_cubit.dart';
 
 import '../../../utils/app_const/image_const.dart';
 import '../../../utils/app_const/text_const.dart';
@@ -8,6 +7,7 @@ import '../../../utils/color/custom_color.dart';
 import '../../../utils/widgets/custom_elev_btn_widget.dart';
 import '../../../utils/widgets/custom_text_form_widget.dart';
 import '../../../utils/widgets/custom_text_widget.dart';
+import 'cubit/login_cubit.dart';
 
 class LoginScreen extends StatelessWidget {
   const LoginScreen({super.key});

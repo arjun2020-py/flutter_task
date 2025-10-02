@@ -76,7 +76,7 @@ class PatinetListCardWidget extends StatelessWidget {
                             CustomHorzontalSizedBoxWidget(width: 5),
 
                             CustomTextWidget(
-                              text: '31/01/2024',
+                              text: 'Jithesh',
                               color: blackColor,
                               fontWeight: FontWeight.w300,
                               fontSize: 13,

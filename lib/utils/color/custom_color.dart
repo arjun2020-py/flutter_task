@@ -6,6 +6,7 @@ Color blackColor = Colors.black;
 Color redColor = Colors.red;
 Color redAcentColor = Colors.redAccent;
 Color greenColor = Colors.green;
+Color greenAccent = Colors.greenAccent;
 Color loginButnColor = Color(0xff006837);
 Color loginPrivacyColor = Color(0xff0028FC);
 Color greyColor = Colors.grey;
