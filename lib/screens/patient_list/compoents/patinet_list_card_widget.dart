@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 
 import '../../../utils/app_const/text_const.dart';
 import '../../../utils/color/custom_color.dart';
@@ -7,10 +8,16 @@ import '../../../utils/widgets/custom_icon_btn_widget.dart'
     show CustomIconButtnWidget;
 import '../../../utils/widgets/custom_icon_widget.dart';
 import '../../../utils/widgets/custom_text_widget.dart';
+import '../cubit/patinet_list_cubit.dart';
 
 class PatinetListCardWidget extends StatelessWidget {
-  const PatinetListCardWidget({super.key});
-
+  const PatinetListCardWidget({
+    super.key,
+    required this.patientListData,
+    required this.index,
+  });
+  final PatientListData patientListData;
+  final int index;
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -27,7 +34,10 @@ class PatinetListCardWidget extends StatelessWidget {
                 CustomHorzontalSizedBoxWidget(width: 10),
                 Padding(
                   padding: const EdgeInsets.symmetric(vertical: 5),
-                  child: CustomTextWidget(text: '1.', color: blackColor),
+                  child: CustomTextWidget(
+                    text: '${index + 1}',
+                    color: blackColor,
+                  ),
                 ),
                 CustomHorzontalSizedBoxWidget(width: 10),
 
@@ -37,10 +47,22 @@ class PatinetListCardWidget extends StatelessWidget {
                   children: [
                     SizedBox(height: 5),
 
-                    CustomTextWidget(text: 'Vikram Singh', color: blackColor),
+                    CustomTextWidget(
+                      text: patientListData
+                          .getApiResponsePatientListModel
+                          .patient[index]
+                          .name,
+                      color: blackColor,
+                    ),
                     SizedBox(height: 5),
                     CustomTextWidget(
-                      text: 'Couple Combo Package (Rejuven...)',
+                      text:
+                          patientListData
+                              .getApiResponsePatientListModel
+                              .patient[index]
+                              .patientdetailsSet[0]
+                              .treatmentName ??
+                          'N/A',
                       color: loginButnColor,
                     ),
                     SizedBox(height: 5),
@@ -57,7 +79,29 @@ class PatinetListCardWidget extends StatelessWidget {
                             CustomHorzontalSizedBoxWidget(width: 5),
 
                             CustomTextWidget(
-                              text: '31/01/2024',
+                              text:
+                                  (patientListData
+                                              .getApiResponsePatientListModel
+                                              .patient[index]
+                                              .dateNdTime !=
+                                          null &&
+                                      patientListData
+                                          .getApiResponsePatientListModel
+                                          .patient[index]
+                                          .dateNdTime!
+                                          .toString()
+                                          .isNotEmpty)
+                                  ? DateFormat('dd/MM/yyyy').format(
+                                      DateTime.tryParse(
+                                            patientListData
+                                                .getApiResponsePatientListModel
+                                                .patient[index]
+                                                .dateNdTime!
+                                                .toString(),
+                                          ) ??
+                                          DateTime(1970, 1, 1),
+                                    )
+                                  : 'N/A',
                               color: blackColor,
                               fontWeight: FontWeight.w300,
                               fontSize: 13,
@@ -76,7 +120,10 @@ class PatinetListCardWidget extends StatelessWidget {
                             CustomHorzontalSizedBoxWidget(width: 5),
 
                             CustomTextWidget(
-                              text: 'Jithesh',
+                              text: patientListData
+                                  .getApiResponsePatientListModel
+                                  .patient[index]
+                                  .user,
                               color: blackColor,
                               fontWeight: FontWeight.w300,
                               fontSize: 13,

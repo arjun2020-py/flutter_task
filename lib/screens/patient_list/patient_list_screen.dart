@@ -10,7 +10,6 @@ import '../../utils/widgets/custom_icon_btn_widget.dart';
 import '../../utils/widgets/custom_icon_widget.dart';
 import '../../utils/widgets/custom_text_form_widget.dart';
 import '../../utils/widgets/custom_text_widget.dart';
-import '../register_patient/test.dart';
 import 'compoents/patinet_list_card_widget.dart';
 
 class PatientListScreen extends StatelessWidget {
@@ -34,8 +33,7 @@ class PatientListScreen extends StatelessWidget {
                 ),
                 backgroundColor: loginButnColor,
                 onPressed: () {
-                   cubit.onRegister();
-                //  Navigator.of(context).push(MaterialPageRoute(builder:(context) => TreatmentScreen(),));
+                  cubit.onRegister();
                 },
                 child: CustomTextWidget(text: registerNow, color: whiteColor),
               ),
@@ -146,14 +144,24 @@ class PatientListScreen extends StatelessWidget {
                         ],
                       ),
                       Divider(),
-                      Expanded(
-                        child: ListView.builder(
-                          shrinkWrap: true,
-                          itemCount: 10,
-                          itemBuilder: (context, index) {
-                            return PatinetListCardWidget();
-                          },
-                        ),
+                      BlocBuilder<PatinetListCubit, PatinetListState>(
+                        buildWhen: (previous, current) =>
+                            current is PatientListData,
+                        builder: (context, state) {
+                          if (state is PatientListData) {
+                            return Expanded(
+                              child: ListView.builder(
+                                shrinkWrap: true,
+                                itemCount: 10,
+                                itemBuilder: (context, index) {
+                                  return PatinetListCardWidget(patientListData: state,index: index,);
+                                },
+                              ),
+                            );
+                          } else {
+                            return Center(child: CircularProgressIndicator(),);
+                          }
+                        },
                       ),
                     ],
                   ),
